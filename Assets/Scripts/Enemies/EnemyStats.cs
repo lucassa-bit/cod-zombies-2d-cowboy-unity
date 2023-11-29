@@ -1,25 +1,46 @@
+using System.Collections;
 using UnityEngine;
 
 public class EnemyStats : MonoBehaviour
 {
-    public float maxHealth;
-    public float health {  get; private set; }
+    private SpriteRenderer sprite;
 
-    public float speed;
-    public float attackDelay;
+    public float MaxHealth;
+    public float Health {  get; private set; }
+
+    public float Speed;
+    public float AttackDelay;
+    public long KillGain;
+
+    [HideInInspector]
+    public GameController Controller;
 
     public void Start() {
-        health = maxHealth;
+        sprite = GetComponentInChildren<SpriteRenderer>();
+        Health = MaxHealth;
     }
 
-    public void DoDamageOnEnemy(int damage) {
-        health -= damage;
+    public void DoDamageOnEnemy(ShootWeapon.SendMessageArgs args) {
+        Health -= args.BulletDamage;
 
-        // Adicionar animação de morte
-        if(health <= 0) Destroy(gameObject);
+        StartCoroutine(DamageEnemy());
+
+        // Adicionar animaï¿½ï¿½o de morte
+        if(Health <= 0) {
+            args.PlayerGO.SendMessage("AddAmount", KillGain);
+            Destroy(gameObject);
+        }
     }
 
-    private void OnDestroy() {
-        
+    private IEnumerator DamageEnemy()
+    {
+        sprite.color = Color.red;
+        yield return new WaitForSeconds(0.1f);
+        sprite.color = Color.white;
+    }
+
+    private void OnDestroy()
+    {
+        Controller.EnemyKilled();
     }
 }

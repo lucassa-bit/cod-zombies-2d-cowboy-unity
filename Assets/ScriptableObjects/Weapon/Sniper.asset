@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77a3c76b055f95f438517e344b5a8661, type: 3}
+  m_Name: Sniper
+  m_EditorClassIdentifier: 
+  WeaponName: Rifle
+  FireRateBase: 1
+  ReloadTime: 7
+  Damage: 150
+  Range: 10
+  MaxMunition: 5
+  Munition: 2
+  Weapons: 1
+  WeaponSprite: {fileID: -887222438, guid: 5c2f51b2775ac4d40ac47022cfa5043c, type: 3}
+  AmmoSprite: {fileID: -413258569, guid: b407e4f3fb472ba48ad73b021a50a274, type: 3}

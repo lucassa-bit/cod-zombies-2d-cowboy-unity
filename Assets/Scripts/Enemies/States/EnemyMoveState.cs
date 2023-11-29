@@ -2,28 +2,28 @@ using UnityEngine;
 
 public class EnemyMoveState : BaseState<EnemyStateMachine.EnemyState>
 {
-    protected EnemyStateMachine ctx;
-    protected float minDistance;
+    protected EnemyStateMachine Context;
+    protected float MinDistance;
 
-    public EnemyMoveState(EnemyStateMachine.EnemyState key, EnemyStateMachine enemyStateMachine, float minDistance) : base(key) {
-        this.minDistance = minDistance;
-        ctx = enemyStateMachine;
+    public EnemyMoveState(EnemyStateMachine.EnemyState key, EnemyStateMachine enemyStateMachine, float MinDistance) : base(key) {
+        this.MinDistance = MinDistance;
+        Context = enemyStateMachine;
     }
 
     public override void EnterState() {
-        ctx.CanWalk(true);
+        Context.CanWalk(true);
     }
 
     public override void ExitState() {
-        ctx.CanWalk(false);
+        Context.CanWalk(false);
     }
 
     public override void UpdateState() {
-        ctx.animationEnemy();
+        Context.AnimationEnemy();
     }
 
     public override EnemyStateMachine.EnemyState GetNextState() {
-        if (ctx.DistanceOfTarget() < minDistance)
+        if (Context.DistanceOfTarget() < MinDistance)
             return EnemyStateMachine.EnemyState.Attack;
         return EnemyStateMachine.EnemyState.Walk;
     }

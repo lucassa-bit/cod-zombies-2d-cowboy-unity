@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class PlayerAnimation : MonoBehaviour
 {
-    private Animator anim;
-    private string currentState;
-    private SpriteRenderer childTransform;
+    private Animator Animator;
+    private string CurrentState;
+    private SpriteRenderer ChildTransform;
 
     // DIRECTIONS
     // 1 - bottom, 2 - top, 3 - horizontal, 4 - diagonal top, 5 diagonal bottom 
@@ -49,52 +49,58 @@ public class PlayerAnimation : MonoBehaviour
     };
 
     private static readonly string[] PLAYER_SHOOT = {
-        "Player_shoot_1",
-        "Player_shoot_2",
-        "Player_shoot_3",
-        "Player_shoot_3",
-        "Player_shoot_4",
-        "Player_shoot_4",
-        "Player_shoot_5",
-        "Player_shoot_5",
+        "Player_attacking_1",
+        "Player_attacking_2",
+        "Player_attacking_3",
+        "Player_attacking_3",
+        "Player_attacking_4",
+        "Player_attacking_4",
+        "Player_attacking_5",
+        "Player_attacking_5",
     };
 
     private void Awake() {
-        anim = GetComponent<Animator>();
-        childTransform = GetComponentInChildren<SpriteRenderer>();
+        Animator = GetComponent<Animator>();
+        ChildTransform = GetComponentInChildren<SpriteRenderer>();
     }
 
     private void Start() {
-        currentState = PLAYER_IDLE[0];
+        CurrentState = PLAYER_IDLE[0];
     }
 
     private void ChangeAnimationState(string state) {
-        if(currentState == state) { return; } 
+        if(CurrentState == state) { return; } 
         
-        anim.Play(state);
-        currentState = state;
+        Animator.Play(state);
+        CurrentState = state;
     }
 
-    private void ChooseAnimationDirection(string[] anims, Vector3 comparator) {
+    private void ChooseAnimationDirection(string[] Animators, Vector3 comparator) {
         for (int index = 0; index < DIRECTIONS.Length; index++) {
             if (DIRECTIONS[index].Equals(comparator)) {
-                // For not creating more than 6 animations, verify if is a specific animator than mirror the X direction of the sprint
+                // For not creating more than 6 Animatorations, verify if is a specific Animatorator than mirror the X direction of the sprint
                 if (index == 3 || index == 5 || index == 7) {
-                    childTransform.flipX = true;
+                    ChildTransform.flipX = true;
                 } else {
-                    childTransform.flipX = false;
+                    ChildTransform.flipX = false;
                 }
 
-                ChangeAnimationState(anims[index]);
+                ChangeAnimationState(Animators[index]);
             }
         }
     }
 
-    public void ChangePlayerMoveAnimation(Vector3 direction, Vector3 lastFacedDirection) {
-        if (direction == Vector3.zero) { 
+    public void ChangePlayerMoveAnimation(Vector3 direction, Vector3 shootDirection, Vector3 lastFacedDirection, bool playerCanShoot) {
+        if (playerCanShoot && shootDirection != Vector3.zero)
+        {
+            ChooseAnimationDirection(PLAYER_SHOOT, shootDirection);
+        }
+        else if (direction == Vector3.zero)
+        {
             ChooseAnimationDirection(PLAYER_IDLE, lastFacedDirection);
-        } 
-        else {
+        }
+        else
+        {
             ChooseAnimationDirection(PLAYER_MOVE, direction);
         }
     }

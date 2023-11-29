@@ -1,13 +1,13 @@
 using UnityEngine;
 
 public class EnemyAttackState : BaseState<EnemyStateMachine.EnemyState> {
-    protected EnemyStateMachine ctx;
-    protected float attackCooldown;
-    protected float cooldown;
+    protected EnemyStateMachine Context;
+    protected float AttackCooldown;
+    protected float Cooldown;
 
-    public EnemyAttackState(EnemyStateMachine.EnemyState key, EnemyStateMachine enemyStateMachine, float attackCooldown) : base(key) {
-        this.attackCooldown = attackCooldown;
-        ctx = enemyStateMachine;
+    public EnemyAttackState(EnemyStateMachine.EnemyState key, EnemyStateMachine enemyStateMachine, float AttackCooldown) : base(key) {
+        this.AttackCooldown = AttackCooldown;
+        Context = enemyStateMachine;
     }
 
     public override void EnterState() {
@@ -17,14 +17,14 @@ public class EnemyAttackState : BaseState<EnemyStateMachine.EnemyState> {
     }
 
     public override void UpdateState() {
-        if (Time.time > cooldown) {
-            ctx.CanAttack().transform.SendMessage("DoDamageOnPlayer", 1.0f);
-            cooldown = attackCooldown + Time.time;
+        if (Time.time > Cooldown) {
+            Context.CanAttack().transform.SendMessage("DamageOnPlayer", 1f);
+            Cooldown = AttackCooldown + Time.time;
         }
     }
 
     public override EnemyStateMachine.EnemyState GetNextState() {
-        if (!ctx.CanAttack())
+        if (!Context.CanAttack())
             return EnemyStateMachine.EnemyState.Walk;
         return EnemyStateMachine.EnemyState.Attack;
     }

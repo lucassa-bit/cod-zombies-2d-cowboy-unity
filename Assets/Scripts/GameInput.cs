@@ -2,49 +2,58 @@ using System;
 using UnityEngine;
 
 public class GameInput : MonoBehaviour {
-    private Vector2 direction;
-    private Vector2 shootDirection;
-    private PlayerInputActions playerInputActions;
+    private Vector2 Direction;
+    private Vector2 ShootDirection;
+    private PlayerInputActions PlayerInputActions;
 
     public EventHandler OnInteractionAction;
-    public EventHandler OnShootAction;
+    public EventHandler OnSwitchWeaponAction;
+    public EventHandler OnPauseGameAction;
 
     private void Awake() {
-        playerInputActions = new PlayerInputActions();
-        playerInputActions.Keyboard.Enable();
-        playerInputActions.Keyboard.InteractWithObjects.performed += Interacting;
+        PlayerInputActions = new PlayerInputActions();
+        PlayerInputActions.Keyboard.Enable();
+
+        PlayerInputActions.Keyboard.InteractWithObjects.performed += Interacting;
+        PlayerInputActions.Keyboard.SwitchWeapon.performed += SwitchWeapon;
+        PlayerInputActions.Keyboard.Pause.performed += PauseGame;
     }
 
     private void Start() {
-        direction = Vector2.zero;
-        shootDirection = Vector2.zero;
+        Direction = Vector2.zero;
+        ShootDirection = Vector2.zero;
     }
 
     private void Interacting(UnityEngine.InputSystem.InputAction.CallbackContext obj) {
         OnInteractionAction?.Invoke(this, EventArgs.Empty);
     }
 
-    private void Shooting(UnityEngine.InputSystem.InputAction.CallbackContext obj) {
-        OnShootAction?.Invoke(this, EventArgs.Empty);
+    private void SwitchWeapon(UnityEngine.InputSystem.InputAction.CallbackContext obj) {
+        OnSwitchWeaponAction?.Invoke(this, EventArgs.Empty);
+    }
+
+    private void PauseGame(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    {
+        OnPauseGameAction?.Invoke(this, EventArgs.Empty);
     }
 
     public Vector2 getMovementVectorNormalized() {
         ResetDirection();
 
-        direction = playerInputActions.Keyboard.Move.ReadValue<Vector2>();
+        Direction = PlayerInputActions.Keyboard.Move.ReadValue<Vector2>();
 
-        return direction.normalized;
+        return Direction.normalized;
     }
 
     public Vector2 getShootVectorNormalized()
     {
         ResetShootDirection();
 
-        shootDirection = playerInputActions.Keyboard.Shoot.ReadValue<Vector2>();
+        ShootDirection = PlayerInputActions.Keyboard.Shoot.ReadValue<Vector2>();
 
-        return shootDirection.normalized;
+        return ShootDirection.normalized;
     }
 
-    public void ResetDirection() { direction.Set(0, 0); }
-    public void ResetShootDirection() { shootDirection.Set(0, 0); }
+    public void ResetDirection() { Direction.Set(0, 0); }
+    public void ResetShootDirection() { ShootDirection.Set(0, 0); }
 }

@@ -2,10 +2,9 @@ using System;
 using UnityEngine;
 
 public class PlayerAim : MonoBehaviour {
+    public Transform BulletPosition;
     [SerializeField]
-    private Transform bulletPosition;
-    [SerializeField]
-    private float distanceAim;
+    private float DistanceAim;
     
     [HideInInspector]
     public event EventHandler<OnShootEventArgs> onShoot;
@@ -14,6 +13,7 @@ public class PlayerAim : MonoBehaviour {
         public Vector3 BulletShootDirection;
     }
 
+    public Material ShootMaterial;
     public Vector3 ShootDirection { get; private set; }
 
     private void Start() {
@@ -22,7 +22,7 @@ public class PlayerAim : MonoBehaviour {
 
     public void SetDirection(Vector3 direction) {
         ShootDirection = direction;
-        bulletPosition.position = transform.position + (ShootDirection * distanceAim);
+        BulletPosition.position = transform.position + (ShootDirection * DistanceAim);
     }
 
     private void Update() {
@@ -32,7 +32,7 @@ public class PlayerAim : MonoBehaviour {
     private void HandleShooting() {
         if (ShootDirection != Vector3.zero) {
             onShoot?.Invoke(this, new OnShootEventArgs {
-                BulletEndPointPosition = bulletPosition.position,
+                BulletEndPointPosition = BulletPosition.position,
                 BulletShootDirection = ShootDirection
             });
         }

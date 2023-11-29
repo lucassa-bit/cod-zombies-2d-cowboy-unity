@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - SoundController
   layers:
   - Default
   - TransparentFX
@@ -14,9 +15,9 @@ TagManager:
   - Background decorations
   - Interactables
   - Enemy
-  - 
-  - 
-  - 
+  - Walls
+  - Foreground decorations
+  - Doors
   - 
   - 
   - 
@@ -41,6 +42,9 @@ TagManager:
   - name: Floor
     uniqueID: 33005817
     locked: 0
+  - name: Walls
+    uniqueID: 2314975293
+    locked: 0
   - name: Background
     uniqueID: 1668411139
     locked: 0
@@ -50,7 +54,10 @@ TagManager:
   - name: Player
     uniqueID: 3293379837
     locked: 0
-  - name: Frontground
+  - name: Enemy
+    uniqueID: 2637145801
+    locked: 0
+  - name: Foreground decoration
     uniqueID: 4140594707
     locked: 0
   - name: Default

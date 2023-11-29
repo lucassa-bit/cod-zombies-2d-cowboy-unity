@@ -1,29 +1,31 @@
 using Pathfinding;
-using System;
 using UnityEngine;
 
 public class EnemyStateMachine : StateManager<EnemyStateMachine.EnemyState>
 {
-    private AIPath aiPath;
-    private float circleRadius = 1f;
-    private EnemyAnimation anim;
-    private EnemyStats stats;
+    private AIPath AiPath;
+
+    private EnemyAnimation Animation;
+    private EnemyStats Stats;
+
+    private float CircleRadius = 0.5f;
 
     public enum EnemyState {
         Walk,
-        Attack
+        Attack,
+        Damaged
     }
 
     private void Awake() {
-        aiPath = GetComponent<AIPath>();
-        stats = GetComponent<EnemyStats>();
-        anim = GetComponentInChildren<EnemyAnimation>();
+        AiPath = GetComponent<AIPath>();
+        Stats = GetComponent<EnemyStats>();
+        
+        Animation = GetComponentInChildren<EnemyAnimation>();
 
-        float minDistance = 0.5f;
-        aiPath.maxSpeed = stats.speed;
+        AiPath.maxSpeed = Stats.Speed;
 
-        EnemyAttackState enemyAttackState = new(EnemyState.Attack, this, stats.attackDelay);
-        EnemyMoveState enemyMoveState = new(EnemyState.Walk, this, minDistance);
+        EnemyAttackState enemyAttackState = new(EnemyState.Attack, this, Stats.AttackDelay);
+        EnemyMoveState enemyMoveState = new(EnemyState.Walk, this, CircleRadius);
 
         States.Add(EnemyState.Attack, enemyAttackState);
         States.Add(EnemyState.Walk, enemyMoveState);
@@ -32,18 +34,18 @@ public class EnemyStateMachine : StateManager<EnemyStateMachine.EnemyState>
     }
 
     public void CanWalk(bool isWalking) {
-        aiPath.canMove = isWalking;
+        AiPath.canMove = isWalking;
     }
 
     public float DistanceOfTarget() {
-        return aiPath.remainingDistance;
+        return AiPath.remainingDistance;
     }
 
     public RaycastHit2D CanAttack() {
-        return Physics2D.CircleCast(transform.position, circleRadius, Vector2.zero, 0, LayerMask.GetMask("Player"));
+        return Physics2D.CircleCast(transform.position, CircleRadius, Vector2.zero, 0, LayerMask.GetMask("Player"));
     }
 
-    public void animationEnemy() {
-        anim.ChangeEnemyMoveAnimation(aiPath.desiredVelocity.normalized);
+    public void AnimationEnemy() {
+        Animation.ChangeEnemyMoveAnimation(AiPath.desiredVelocity.normalized);
     }
 }

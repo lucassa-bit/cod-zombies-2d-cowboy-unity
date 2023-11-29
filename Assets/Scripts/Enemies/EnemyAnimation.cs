@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyAnimation : MonoBehaviour
 {
-    private Animator anim;
-    private string currentState;
-    private SpriteRenderer childTransform;
+    private Animator Animator;
+    private string CurrentState;
+    private SpriteRenderer ChildTransform;
 
     private static readonly string[] ENEMY_MOVE = {
         "Enemy_moving_1",
@@ -18,61 +16,61 @@ public class EnemyAnimation : MonoBehaviour
 
     private void Awake()
     {
-        anim = GetComponent<Animator>();
-        childTransform = GetComponent<SpriteRenderer>();
+        Animator = GetComponent<Animator>();
+        ChildTransform = GetComponent<SpriteRenderer>();
     }
 
     private void Start()
     {
-        currentState = ENEMY_MOVE[0];
+        CurrentState = ENEMY_MOVE[0];
     }
 
     private void ChangeAnimationState(string state)
     {
-        if (currentState == state) { return; }
+        if (CurrentState == state) { return; }
 
-        anim.Play(state);
-        currentState = state;
+        Animator.Play(state);
+        CurrentState = state;
     }
 
-    private void ChooseAnimationDirection(string[] anims, Vector3 comparator)
+    private void ChooseAnimationDirection(string[] Animators, Vector3 comparator)
     {
-        childTransform.flipX = false;
+        ChildTransform.flipX = false;
 
         // diagonal top (right and left)
         // diagonal bottom (right and left)
 
-        // For not creating more than 6 animations, verify if is a specific animator than mirror the X direction of the sprint
+        // For not creating more than 6 Animatorations, verify if is a specific Animatorator than mirror the X direction of the sprint
         // BOTTOM
         if (comparator.x >= -0.45f && comparator.x <= 0.45f && comparator.y <= -0.9f)
-            ChangeAnimationState(anims[0]);
+            ChangeAnimationState(Animators[0]);
         // TOP
         else if (comparator.x >= -0.45f && comparator.x <= 0.45f && comparator.y >= 0.9f)
-            ChangeAnimationState(anims[1]);
+            ChangeAnimationState(Animators[1]);
         // RIGHT
         else if (comparator.y >= -0.45f && comparator.y <= 0.45f && comparator.x >= 0.9f)
-            ChangeAnimationState(anims[2]);
+            ChangeAnimationState(Animators[2]);
         // LEFT
         else if (comparator.y >= -0.45f && comparator.y <= 0.45f && comparator.x <= -0.9f) {
-            ChangeAnimationState(anims[2]);
-            childTransform.flipX = true;
+            ChangeAnimationState(Animators[2]);
+            ChildTransform.flipX = true;
         }
         // DIAGONAL TOP RIGHT
         else if (comparator.x > 0.45f && comparator.x < 0.9f && comparator.y < 0.9f && comparator.y > 0.45f)
-            ChangeAnimationState(anims[3]);
+            ChangeAnimationState(Animators[3]);
         // DIAGONAL TOP LEFT
         else if (comparator.x < -0.45f && comparator.x > -0.9f && comparator.y < 0.9f && comparator.y > 0.45f) {
-            ChangeAnimationState(anims[3]);
-            childTransform.flipX = true;
+            ChangeAnimationState(Animators[3]);
+            ChildTransform.flipX = true;
         }
         // DIAGONAL BOTTOM RIGHT
         else if (comparator.x > 0.45f && comparator.x < 0.9f && comparator.y > -0.9f && comparator.y < -0.45f)
-            ChangeAnimationState(anims[4]);
+            ChangeAnimationState(Animators[4]);
         // DIAGONAL BOTTOM LEFT
         else if (comparator.x < -0.45f && comparator.x > -0.9f && comparator.y > -0.9f && comparator.y < -0.45f)
         {
-            ChangeAnimationState(anims[4]);
-            childTransform.flipX = true;
+            ChangeAnimationState(Animators[4]);
+            ChildTransform.flipX = true;
         }
     }
 

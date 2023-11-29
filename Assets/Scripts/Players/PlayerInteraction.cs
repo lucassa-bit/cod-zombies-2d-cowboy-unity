@@ -3,23 +3,21 @@ using UnityEngine;
 public class PlayerInteraction : MonoBehaviour
 {
     [SerializeField]
-    private float raycastLenght = 1.0f;
+    private float RayCastLenght = 1.0f;
 
-    private PlayerMovement playerMovement;
-    private RaycastHit2D colide;
+    private PlayerBase PlayerBase;
+    private RaycastHit2D Colide;
 
     private void Awake() {
-        playerMovement = GetComponent<PlayerMovement>();
+        PlayerBase = GetComponent<PlayerBase>();
     }
 
     private void Update() {
-        colide = Physics2D.Raycast(transform.position, playerMovement.lastFacedDirection, raycastLenght, LayerMask.GetMask("Interactables"));
-
-        // Put a visual select
+        Colide = Physics2D.Raycast(transform.position, PlayerBase.LastFacedDirection, RayCastLenght, LayerMask.GetMask("Interactables", "Doors"));
     }
 
     public void CheckInteraction() {
-        if(colide)
-            colide.collider.gameObject.GetComponent<IInteraction>()?.Interaction(GetComponent<PlayerWallet>());
+        if(Colide)
+            Colide.collider.gameObject.GetComponent<IInteraction>()?.Interaction(GetComponent<PlayerStats>());
     }
 }
