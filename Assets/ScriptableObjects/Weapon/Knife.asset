@@ -15,8 +15,8 @@ MonoBehaviour:
   WeaponName: Melee
   FireRateBase: 2.5
   ReloadTime: 0
-  Damage: 5
-  Range: 15
+  Damage: 3.5
+  Range: 10
   MaxMunition: 1
   Munition: 1
   Weapons: 2

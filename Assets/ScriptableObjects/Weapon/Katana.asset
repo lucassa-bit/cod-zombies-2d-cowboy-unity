@@ -16,7 +16,7 @@ MonoBehaviour:
   FireRateBase: 1.5
   ReloadTime: 0
   Damage: 10
-  Range: 25
+  Range: 20
   MaxMunition: 1
   Munition: 1
   Weapons: 2

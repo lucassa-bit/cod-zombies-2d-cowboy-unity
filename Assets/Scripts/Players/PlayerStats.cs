@@ -37,7 +37,7 @@ public class PlayerStats : MonoBehaviour {
     }
 
     private void Update() {
-        if(Health < HealthMax && Time.time > TimerToHealUp) {
+        if(Health < Mathf.Ceil(HealthMax * (1 + AddHealth)) && Time.time > TimerToHealUp) {
             Health += regen;
         }
     }

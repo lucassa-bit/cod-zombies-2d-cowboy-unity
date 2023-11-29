@@ -18,7 +18,8 @@ MonoBehaviour:
   Damage: 5
   Range: 7
   MaxMunition: 6
-  Munition: 2
+  Munition: 4
   Weapons: 3
   WeaponSprite: {fileID: -1473188079, guid: 5c2f51b2775ac4d40ac47022cfa5043c, type: 3}
   AmmoSprite: {fileID: 336975353, guid: b407e4f3fb472ba48ad73b021a50a274, type: 3}
+  WeaponAudioClip: {fileID: 8300000, guid: 46eda2b05532ab8419a103eae3bab689, type: 3}

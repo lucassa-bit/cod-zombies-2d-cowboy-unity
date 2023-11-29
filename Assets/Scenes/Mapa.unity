@@ -1200,6 +1200,10 @@ PrefabInstance:
       propertyPath: Sfx
       value: 
       objectReference: {fileID: 1697108999}
+    - target: {fileID: 1337853343014538478, guid: ac1f59417dc03ae4fa1e6f8185b87cd4, type: 3}
+      propertyPath: CooldownToBuy
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 5974045011113165809, guid: ac1f59417dc03ae4fa1e6f8185b87cd4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 55.45
@@ -1659,12 +1663,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 14011900448427085}
-        m_TargetAssemblyTypeName: GameController
-        m_MethodName: 
-        m_Mode: 0
+        m_TargetAssemblyTypeName: GameController, Assembly-CSharp
+        m_MethodName: ContinueGame
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -122797,6 +122801,10 @@ PrefabInstance:
       propertyPath: Sfx
       value: 
       objectReference: {fileID: 1697108999}
+    - target: {fileID: 8180151510706252989, guid: 83e29299ef3c33e4786c2422dc2bfc91, type: 3}
+      propertyPath: CooldownToBuy
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -123993,6 +124001,10 @@ PrefabInstance:
       propertyPath: Sfx
       value: 
       objectReference: {fileID: 1697108999}
+    - target: {fileID: 6257294170418775897, guid: 6ef5a092e5644f143b90af9e7ee3d760, type: 3}
+      propertyPath: CooldownToBuy
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 8326640828748481988, guid: 6ef5a092e5644f143b90af9e7ee3d760, type: 3}
       propertyPath: m_Name
       value: DoublePunch_stand
@@ -124933,6 +124945,10 @@ PrefabInstance:
       propertyPath: Sfx
       value: 
       objectReference: {fileID: 1697108999}
+    - target: {fileID: 846706357394425242, guid: aaee4662029112d44b5089e85644af02, type: 3}
+      propertyPath: CooldownToBuy
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 5035689287252440133, guid: aaee4662029112d44b5089e85644af02, type: 3}
       propertyPath: m_Name
       value: SuperNog_stand

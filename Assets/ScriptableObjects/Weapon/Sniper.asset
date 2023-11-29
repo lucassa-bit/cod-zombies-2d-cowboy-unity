@@ -14,11 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WeaponName: Rifle
   FireRateBase: 1
-  ReloadTime: 7
+  ReloadTime: 4.5
   Damage: 150
   Range: 10
   MaxMunition: 5
-  Munition: 2
+  Munition: 0
   Weapons: 1
   WeaponSprite: {fileID: -887222438, guid: 5c2f51b2775ac4d40ac47022cfa5043c, type: 3}
   AmmoSprite: {fileID: -413258569, guid: b407e4f3fb472ba48ad73b021a50a274, type: 3}
+  WeaponAudioClip: {fileID: 8300000, guid: a0e471581e7214948b841f29b3efde2a, type: 3}

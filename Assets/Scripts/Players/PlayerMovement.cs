@@ -21,6 +21,6 @@ public class PlayerMovement : MonoBehaviour {
     }    
 
     private void FixedUpdate() {
-        rgbd.velocity = VelocityVector * Stats.BaseSpeed;
+        rgbd.velocity = VelocityVector * (Stats.BaseSpeed * (1 + Stats.Speed));
     }
 }

@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WeaponName: Shotgun
   FireRateBase: 3.5
-  ReloadTime: 4.8
+  ReloadTime: 4.3
   Damage: 10
   Range: 3
   MaxMunition: 2
-  Munition: 0
+  Munition: 2
   Weapons: 0
   WeaponSprite: {fileID: 1206623898, guid: 5c2f51b2775ac4d40ac47022cfa5043c, type: 3}
   AmmoSprite: {fileID: -2060601271, guid: b407e4f3fb472ba48ad73b021a50a274, type: 3}
